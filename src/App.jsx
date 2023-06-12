@@ -1,6 +1,9 @@
 // IMPORT ANY NEEDED COMPONENTS HERE
 import { Dataset } from "./data/dataset"
 import "./App.css"
+import Chip from "./components/Chip/Chip"
+import Header from "./components/Header/Header"
+import { useState } from "react"
 
 // don't move this!
 export const appInfo = {
@@ -21,24 +24,45 @@ export const appInfo = {
 export function App() {
   const { data, categories, restaurants } = Dataset.createDataSet()
 
+  const [clickCat, setClickCat] = useState(null)
+  const [clickRest, setClickRest] = useState(null)
+  const [clickItem, setClickItem] = useState(null)
+  
+  // const currentMenuItems = data.filter(food_category=setClickCat, restaurant=setClickRest)
+
+
   return (
     <main className="App">
       {/* CATEGORIES COLUMN */}
       <div className="CategoriesColumn col">
         <div className="categories options">
           <h2 className="title">Categories</h2>
-          {/* YOUR CODE HERE */}
+
+          {categories.map(function(categories) {
+            return (
+              <Chip key={categories} label={categories} isActive = {clickCat === categories} handleClick = {() => setClickCat(categories)}/>
+          )
+        })}
+
+          
         </div>
       </div>
 
       {/* MAIN COLUMN */}
       <div className="container">
-        {/* HEADER GOES HERE */}
+        <Header headerInfo={appInfo}/>
 
         {/* RESTAURANTS ROW */}
         <div className="RestaurantsRow">
           <h2 className="title">Restaurants</h2>
-          <div className="restaurants options">{/* YOUR CODE HERE */}</div>
+          <div className="restaurants options">
+          {restaurants.map(function(restaurants) {
+            return (
+             <Chip key={restaurants} label={restaurants} isActive = {clickRest === restaurants} handleClick = {() => setClickRest(restaurants)}/>
+          )
+  
+        })}
+          </div>
         </div>
 
         {/* INSTRUCTIONS GO HERE */}
