@@ -3,6 +3,7 @@ import { Dataset } from "./data/dataset"
 import "./App.css"
 import Chip from "./components/Chip/Chip"
 import Header from "./components/Header/Header"
+import NutritionalLabel from "./components/NutritionalLabel/NutritionalLabel"
 import { useState } from "react"
 
 // don't move this!
@@ -75,7 +76,9 @@ export function App() {
           </div>
 
           {/* NUTRITION FACTS */}
-          <div className="NutritionFacts nutrition-facts">{/* YOUR CODE HERE */}</div>
+          <div className="NutritionFacts nutrition-facts">
+            <NutritionalLabel />
+            </div>
         </div>
 
         <div className="data-sources">
